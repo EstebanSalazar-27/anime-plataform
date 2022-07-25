@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flex-stats{
+    display: flex;
+    align-items: center;
+}
+.flex-stats-items-start{
+    display: flex;
+    align-items: flex-start;
+}
+.flex-stats-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+h1,h2,h3,h4,h5,h6   {
+    margin: 0;
+    padding:0; 
+    color:white;
+    
+}
