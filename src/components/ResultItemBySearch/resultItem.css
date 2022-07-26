@@ -1,0 +1,41 @@
+
+#bourble-type{
+transition: 300ms ease-in;
+}
+.decorator-TV{
+    background: #129ac5;
+background: -webkit-linear-gradient(36deg, #129ac5 0%, #0085ff 100%);
+background: linear-gradient(36deg, #129ac5 0%, #0085ff 100%);}
+.decorator-OVA{
+    background: #ffb347;
+background: -webkit-linear-gradient(0deg, #ffb347 0%, #fb9e42 100%);
+background: linear-gradient(0deg, #ffb347 0%, #fb9e42 100%);}
+.decorator-Movie{
+    background: #ff47b4;
+background: -webkit-linear-gradient(0deg, #ff47b4 0%, #ff2e84 100%);
+background: linear-gradient(0deg, #ff47b4 0%, #ff2e84 100%);}
+.decorator-Special{
+    background: #00d900;
+background: -webkit-linear-gradient(0deg, #00d900 0%, #15a815 100%);
+background: linear-gradient(0deg, #00d900 0%, #15a815 100%);}
+#card-image::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    background-color: rgb(67, 179, 227,0.60);
+    z-index: 0;
+    opacity:0;
+    transition:300ms ease-in;
+}
+
+#card-image:hover::before{
+opacity:1;
+}
+
+#card-image:hover #bourble-type{
+background: white;
+color: #109fdf;
+}
