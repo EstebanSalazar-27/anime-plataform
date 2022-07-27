@@ -5,13 +5,21 @@ import { ResultItemBySearch } from '../../components/ResultItemBySearch/ResultIt
 import { useSearch } from '../../hooks/useSearch'
 import { Pagination } from "../../components/Pagination/Pagination"
 import { BeatLoader, BounceLoader } from 'react-spinners'
+import { FilterBar } from '../../components/FilterBar/FilterBar'
 
 export const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
+  const [filteredOut, SetfilterOut] = useState({
+    type: "",
+    gender: []
+  })
   const { type, keyword } = useParams()
-  const { data, pagination, loading } = useSearch({ type: type, keyword: keyword, page: currentPage })
+  const { data, pagination, loading } = useSearch({ type: type, keyword: keyword, typeOf: filteredOut.type, gender: filteredOut.gender.join(','), page: currentPage })
 
+  console.log(filteredOut.gender.join(','))
+
+  // Sort all animes for type
   if (searchResult) {
     searchResult.sort((a, b) => {
 
@@ -41,7 +49,8 @@ export const SearchResult = () => {
   return (
     <div className=' pt-40 flex flex-col gap-6'>
       <Pagination pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <HeadingH3 fonts="text-3xl">Filters bar is not finished yet so i put anything here :) {keyword} </HeadingH3>
+
+      <FilterBar SetfilterOut={SetfilterOut} />
 
       <div className='relative flex items-start w-full  min-h-[300px] gap-4 flex-wrap'>
         {

@@ -17,7 +17,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-spinners": "^0.13.3",
-    "react-youtube": "^9.0.3"
+    "react-youtube": "^9.0.3",
+    "sass": "^1.54.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",

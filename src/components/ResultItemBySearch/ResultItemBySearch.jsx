@@ -3,9 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { HeadingH3 } from '../HeadingH3/HeadingH3'
 import "./resultItem.css"
 export const ResultItemBySearch = ({ title, type, images, id }) => {
-
     const params = useParams()
-    console.log(params, "id")
+
     return (
         <Link to={`/${params.type}/detail/${id}`} className='relative flex flex-col w-[185px] gap-2 justify-center items-center mb-2 shadow-lg'>
             <div id="card-image" className='relative bg-slate-100/95 p-1.5 rounded-sm'>

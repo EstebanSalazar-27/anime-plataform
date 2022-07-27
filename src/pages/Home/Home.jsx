@@ -7,6 +7,8 @@ import { ListOfAnimes } from '../../components/ListOfAnimes/ListOfAnimes'
 
 export const Home = () => {
     const {type} = useParams()
+
+    document.title = "Home"
     return (
         <div className='w-full pt-40  flex-stats-items-start lg:flex-wrap gap-20'>
             <Aside />

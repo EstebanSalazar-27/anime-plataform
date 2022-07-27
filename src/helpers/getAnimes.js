@@ -5,7 +5,8 @@ const querys = {
     limit: "?limit=",
     page: "page=",
     query: "?q=",
-    typeOf: "type="
+    typeOf: "type=",
+    gender: "genres=",
 }
 
 export const getAllAnimes = async ({ query, limit = 25, page = 1 }) => {
@@ -24,11 +25,17 @@ export const getDetailById = async ({ type = "anime", id }) => {
     return data
 }
 
-export const getSearchByKeyword = async ({ type, keyword, typeOf = "all", page, }) => {
-    const res = await fetch(`${API_URL}${type}${querys.query}${keyword}&${querys.typeOf}${typeOf}&${querys.page}${page}`)
+export const getSearchByKeyword = async ({ type, keyword, typeOf = "all", gender, page, }) => {
+    const res = await fetch(`${API_URL}${type}${querys.query}${keyword}&${querys.typeOf}${typeOf}&${querys.gender}${gender}&${querys.page}${page}`)
     const data = await res.json()
-    console.log(data)
 
     return data
 
+}
+
+export const GetGenders = async ({ type = "anime" }) => {
+    const res = await fetch(`${API_URL}genres/${type}`)
+    const data = await res.json()
+
+    return data
 }

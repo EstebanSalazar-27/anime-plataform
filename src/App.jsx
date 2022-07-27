@@ -21,7 +21,7 @@ function App() {
       <Wrapper>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/:type' element={<Home />} />
+          <Route path='/:type' element={<Home />}  />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/:type/detail/:id' element={<Detail />} />
           <Route path='/search/:keyword/:type' element={<SearchResult />} />
