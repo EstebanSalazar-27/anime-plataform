@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { getSearchByKeyword } from '../helpers/getAnimes'
 
-export const useSearch = ({ type, keyword, typeOf, gender, page }) => {
+export const useSearch = ({ type, keyword, page }) => {
 
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [pagination, setPagination] = useState({})
 
 
-    const seachFetch = async ({ type, keyword, typeOf, gender, page }) => {
+    const seachFetch = async ({ type, keyword, page }) => {
         setLoading(true)
-        const res = await getSearchByKeyword({ type: type, keyword: keyword, typeOf: typeOf, gender: gender, page: page })
+        const res = await getSearchByKeyword({ type: type, keyword: keyword, page: page })
         const { data } = res
         const { pagination } = res
         setData(data)
@@ -19,8 +19,8 @@ export const useSearch = ({ type, keyword, typeOf, gender, page }) => {
     }
 
     useEffect(() => {
-        seachFetch({ type: type, keyword: keyword, typeOf: typeOf, gender: gender, page: page })
-    }, [type, keyword, typeOf, gender, page]);
+        seachFetch({ type: type, keyword: keyword, page: page })
+    }, [type, keyword, page]);
 
 
     return { data, pagination, loading }

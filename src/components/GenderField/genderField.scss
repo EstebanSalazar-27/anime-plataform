@@ -9,9 +9,10 @@
     grid-template-columns: repeat(4,1fr);
     gap: 5px;
     padding: 10px 15px;
-    transform: scale(0);
+ 
     transition: all 300ms ease ;
-
+    transform-origin: top left;
+    transform: scale(0);
    
   
     &::before{
@@ -27,6 +28,7 @@
         border-color: transparent transparent  rgba(233, 239, 244, 0.924) transparent;
         
     }
+  
     &.showModal{
         transform: scale(1);
      

@@ -18,6 +18,10 @@ background: linear-gradient(0deg, #ff47b4 0%, #ff2e84 100%);}
     background: #00d900;
 background: -webkit-linear-gradient(0deg, #00d900 0%, #15a815 100%);
 background: linear-gradient(0deg, #00d900 0%, #15a815 100%);}
+.decorator-ONA{
+    background: #ff006e;
+
+}
 #card-image::before{
     content: "";
     position: absolute;

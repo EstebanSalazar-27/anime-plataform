@@ -27,3 +27,28 @@ h1,h2,h3,h4,h5,h6   {
     color:white;
     
 }
+/* width */
+::-webkit-scrollbar {
+        width: 3px;
+ 
+      
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px; 
+        
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #0ea5e9;
+        border-radius: 10px; 
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        
+        background: #0ea5e990;
+      }

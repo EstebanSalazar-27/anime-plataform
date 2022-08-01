@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FilterOutContext } from '../../Context/FilterOutContext'
 import { OptionFilteredout, SelectedFilterField } from '../SelectedFilterField/SelectedFilterField'
 
 const initialValue = {
@@ -8,6 +9,7 @@ const initialValue = {
 }
 export const SearchBar = () => {
     const [formData, setFormData] = useState(initialValue)
+    const { filtersSelected, setFiltersSelected } = useContext(FilterOutContext)
     const navigate = useNavigate()
 
     const handleChange = ({ target }) => {
@@ -20,13 +22,16 @@ export const SearchBar = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         navigate(`/search/${formData.keyword}/${formData.filterdOutType}`)
-        document.title = `Search ${formData.keyword}`
+        // Here we reset the filtered list of results to have be able to render only the items that make match with our search 
+        if (filtersSelected) {
+            setFiltersSelected()
+        }
 
     }
 
 
     return (
-        <form className='sm:hidden flex gap-2' onSubmit={handleSubmit}>
+        <form className=' flex gap-2' onSubmit={handleSubmit}>
             <select className='bg-transparent text-slate-50' name="filterdOutType" id="filterdOutType " onChange={handleChange}>
                 <option className="text-stone-900" selected value="anime">Anime</option>
                 <option className="text-stone-900" value="manga">Manga</option>

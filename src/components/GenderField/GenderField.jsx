@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { GetGenders } from '../../helpers/getAnimes'
 import { CheckBoxFilter } from '../CheckboxFilter/CheckBoxFilter'
@@ -7,13 +7,14 @@ export const GenderField = ({ handleCheckboxChange, genresFilteredOut }) => {
     const [genderList, setGenderList] = useState([])
     const [showGenres, setShowGenres] = useState(false)
     const { type } = useParams()
-
+    const ref = useRef()
 
     const isGenresListVisible = showGenres === true ? "showModal" : ""
     const handleShowGenres = () => {
         setShowGenres(!showGenres)
     }
 
+    console.log(ref)
     // fetch for get all the gender and reset the local state of this component
     const fetchGenders = async () => {
         const res = await GetGenders({ type: type })
@@ -21,25 +22,32 @@ export const GenderField = ({ handleCheckboxChange, genresFilteredOut }) => {
     }
 
     useEffect(() => {
+        const checkIfClickedOutside = e => {
+            // If the menu is open and the clicked target is not within the menu,
+            // then close the menu
+            if (showGenres && ref.current && !ref.current.contains(e.target)) {
+                setShowGenres(false)
+            }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+            // Cleanup the event listener
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [showGenres])
+
+    useEffect(() => {
         fetchGenders()
     }, [type])
 
     return (
-        <div name="genres" id='genres' onChange={handleCheckboxChange} className='cont-genres relative flex items-center justify-center cursor-pointer bg-black/20 rounded-sm h-8 px-2 '>
-            <button className='w-full h-full text-slate-50' onClick={handleShowGenres}>Gender Selected {genresFilteredOut}</button>
-
+        <div  ref={ref} name="genres" id='genres' onChange={handleCheckboxChange} className=' min-w-[170px] cont-genres relative flex items-center justify-center cursor-pointer bg-stone-800/90 select-none  rounded-sm h-8 px-2 '>
+            <button type='button' className='absolute w-full h-full text-slate-100 font-semibold' onClick={() => setShowGenres(oldState => !oldState)}>Gender selected: {genresFilteredOut}</button>
             {/* Modal menu */}
-            <div className={`menu-genres  ${isGenresListVisible}  `}>
-                {
-                    genderList
-                        ?
-                        genderList?.data?.map((gender) => <CheckBoxFilter key={gender.mal_id} id={gender.mal_id} value={gender.mal_id} name="genres" label={gender.name} />)
-                        :
-                        <h2>Filtring</h2>
-                }
-
-
-
+            <div  className={`menu-genres  ${isGenresListVisible}`}>
+                {genderList?.data?.map((gender) => <CheckBoxFilter key={gender.mal_id} id={gender.mal_id} value={gender.mal_id} name="genres" label={gender.name} />)}
             </div>
         </div>
     )

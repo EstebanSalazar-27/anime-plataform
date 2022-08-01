@@ -2,14 +2,14 @@ import { useState, useEffect } from "react"
 import { getTopAnimes } from "../helpers/getAnimes"
 
 export const useTopFetch = ({ type }) => {
-    const [data, setData] = useState([])
+    const [dataTop, setDataTop] = useState([])
     const [loading, setLoading] = useState(false)
 
 
     const topFetch = async ({ type }) => {
         setLoading(true)
-        const res = await getTopAnimes({ type: type })
-        setData(res)
+        const resTop = await getTopAnimes({ type: type })
+        setDataTop(resTop)
         setLoading(false)
     }
 
@@ -17,6 +17,5 @@ export const useTopFetch = ({ type }) => {
         topFetch({ type: type })
     }, [type]);
 
-
-    return { data, loading }
+    return { dataTop, loading }
 }

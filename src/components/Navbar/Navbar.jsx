@@ -13,7 +13,6 @@ export const Navbar = () => {
         <NavLink className="text-slate-50 font-medium text-md " to="/anime">Anime</NavLink>
         <NavLink className="text-slate-50 font-medium text-md " to="/manga">Manga</NavLink>
       </div>
-    
 
       <SearchBar />
 

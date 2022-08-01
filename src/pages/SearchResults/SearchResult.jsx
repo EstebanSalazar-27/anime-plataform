@@ -1,24 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { HeadingH3 } from '../../components/HeadingH3/HeadingH3'
+
 import { ResultItemBySearch } from '../../components/ResultItemBySearch/ResultItemBySearch'
 import { useSearch } from '../../hooks/useSearch'
 import { Pagination } from "../../components/Pagination/Pagination"
 import { BeatLoader, BounceLoader } from 'react-spinners'
 import { FilterBar } from '../../components/FilterBar/FilterBar'
+import { useItemsByFilter } from '../../hooks/useItemsByFilter'
+import { FilterOutContext } from '../../Context/FilterOutContext'
+import { Spinner } from '../../components/Spinner/Spinner'
 
 export const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([])
+  // state with the filtered result  
+  const [filteredResult, setFilteredResult] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [filteredOut, SetfilterOut] = useState({
-    type: "",
-    gender: []
-  })
+
+  const { filtersSelected, setFiltersSelected } = useContext(FilterOutContext)
   const { type, keyword } = useParams()
-  const { data, pagination, loading } = useSearch({ type: type, keyword: keyword, typeOf: filteredOut.type, gender: filteredOut.gender.join(','), page: currentPage })
+  const { data, pagination, loading } = useSearch({ type: type, keyword: keyword, page: currentPage })
+  // use fetch to get data about the filtered info 
+  const { filteredData, filteredPagination, filteredLoading } = useItemsByFilter({ type: type, gender: filtersSelected?.gender, typeOf: filtersSelected?.typeOf, status: filtersSelected?.status, order: filtersSelected?.order, page: currentPage })
 
-  console.log(filteredOut.gender.join(','))
-
+  // Renders
+  const resultsToRender =
+    !filtersSelected
+      ?
+      searchResult.map((e) => <ResultItemBySearch key={e.title + e.mal_id} title={e.title} type={e.type} images={e.images.jpg} id={e.mal_id} />)
+      :
+      filteredResult.map((e) => <ResultItemBySearch key={e.title + e.mal_id} title={e.title} type={e.type} images={e.images.jpg} id={e.mal_id} />)
   // Sort all animes for type
   if (searchResult) {
     searchResult.sort((a, b) => {
@@ -41,28 +51,40 @@ export const SearchResult = () => {
 
     })
   }
+
+
   useEffect(() => {
     if (data) {
       setSearchResult(data)
     }
   }, [data])
+
+  useEffect(() => {
+    if (filteredData) {
+      setFilteredResult(filteredData)
+    }
+
+  }, [filteredData])
+  const gendersSelected = filtersSelected ? filtersSelected?.gender?.map((e) => e) : null
+
   return (
     <div className=' pt-40 flex flex-col gap-6'>
-      <Pagination pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      {/* pagination search - pagination filtered */}
+      {!filtersSelected ? <Pagination isLoading={loading} isFiltersLoading={filteredLoading} pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} /> : <Pagination pagination={filteredPagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
 
-      <FilterBar SetfilterOut={SetfilterOut} />
-
-      <div className='relative flex items-start w-full  min-h-[300px] gap-4 flex-wrap'>
+      <FilterBar currentPage={currentPage} setCurrentPage={setCurrentPage} SetfilterOut={setFiltersSelected} />
+      {filtersSelected ? <div className='flex flex-col md:pt-4'><h2 className='font-semibold text-2xl'>Filters Selected:</h2> <h2 className='capitalize font-semibold text-slate-200'>Type: {filtersSelected.typeOf} / Status: {filtersSelected.status} / Order By: {filtersSelected.order} </h2> </div> : null}
+      <div className='relative flex items-start w-full  min-h-[300px] md:pt-8 gap-4 flex-wrap'>
         {
           !loading
             ?
-            searchResult.map((e) => <ResultItemBySearch key={e.title + e.mal_id} title={e.title} type={e.type} images={e.images.jpg} id={e.mal_id} />)
+            resultsToRender
             :
-            <BeatLoader
-              className='absolute left-2/4 bottom-2/4 -translate-x-2/4'
-              color="#1fa9ff"
-              size={30}
-            />
+            <div className='absolute left-2/4 bottom-2/4  -translate-2/4'>
+              <BeatLoader color='#3b82f6' size={24} />
+
+            </div>
+
         }
 
       </div>

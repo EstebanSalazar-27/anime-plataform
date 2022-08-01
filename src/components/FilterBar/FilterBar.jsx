@@ -6,11 +6,13 @@ import { OptionFilteredout, SelectedFilterField } from '../SelectedFilterField/S
 import { CheckBoxFilter } from '../CheckboxFilter/CheckBoxFilter'
 import { GenderField } from '../GenderField/GenderField'
 
-export const FilterBar = ({ SetfilterOut }) => {
+export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
 
   const [formData, setFormData] = useState({
-    type: "",
+    typeOf: "",
     genres: [],
+    status: "",
+    order: ""
   })
 
   const handleChange = ({ target }) => {
@@ -20,7 +22,7 @@ export const FilterBar = ({ SetfilterOut }) => {
     })
   }
   const handleCheckboxChange = (e) => {
-    let newArray = [...formData.genres, e.target.value];
+    let newArray = [...formData.genres, e.target.value]
     if (formData.genres.includes(e.target.value)) {
       newArray = newArray.filter(genre => genre !== e.target.value);
     }
@@ -29,31 +31,61 @@ export const FilterBar = ({ SetfilterOut }) => {
       [e.target.name]: newArray
     });
 
+
+
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     SetfilterOut({
-      type: formData.type,
-      gender: formData.genres
+      // typeOf "tv" , "movie" , " ova", "ona", "special"
+      typeOf: formData.typeOf,
+      // genders  '1 - 100'
+      gender: formData.genres,
+      // status "upcoming" , "complete", "airing"
+      status: formData.status,
+      // order_by popularity , favorites, id , name, type etc
+      order: formData.order,
+
     })
+    if (currentPage > 1) {
+      setCurrentPage(1)
+    }
   }
 
 
   return (
-    <form className='w-full h-12 flex-stats gap-2' onSubmit={handleSubmit}>
+    <form className='w-full h-12 flex-stats gap-2 flex-wrap pb-20' onSubmit={handleSubmit}>
 
-      <SelectedFilterField handleChange={handleChange}>
-        <OptionFilteredout value="all">Type</OptionFilteredout>
-        <OptionFilteredout value="TV">TV</OptionFilteredout>
-        <OptionFilteredout value="Movie">Movie</OptionFilteredout>
-        <OptionFilteredout value="Special">Special</OptionFilteredout>
-        <OptionFilteredout value="Ova">Ova</OptionFilteredout>
-        <OptionFilteredout value="ONA">Ona</OptionFilteredout>
+      <SelectedFilterField name="typeOf" handleChange={handleChange}>
+        <OptionFilteredout name="All" value="TV">All</OptionFilteredout>
+        <OptionFilteredout name="typeOf" value="TV">TV</OptionFilteredout>
+        <OptionFilteredout name="typeOf" value="Movie">Movie</OptionFilteredout>
+        <OptionFilteredout name="typeOf" value="Special">Special</OptionFilteredout>
+        <OptionFilteredout name="typeOf" value="Ova">Ova</OptionFilteredout>
+        <OptionFilteredout name="typeOf" value="ONA">Ona</OptionFilteredout>
       </SelectedFilterField>
       <GenderField genresFilteredOut={formData.genres.length} handleCheckboxChange={handleCheckboxChange} />
 
+      <SelectedFilterField name="status" handleChange={handleChange}>
+        <OptionFilteredout name="all" isSelected="selected" value="all" >Estado: All</OptionFilteredout>
+        <OptionFilteredout name="airing" value="airing">Estado: Airing</OptionFilteredout>
+        <OptionFilteredout name="complete" value="complete">Estado: Complete</OptionFilteredout>
+        <OptionFilteredout name="upcoming" value="upcoming">Estado: Upcoming</OptionFilteredout>
+      </SelectedFilterField>
 
-      <button type='submit' className='  h-8 max-h-8 px-2 text-slate-50 font-bold bg-blue-500 text-sm rounded-sm flex justify-center items-center gap-2'><FontAwesomeIcon className='' color='white' icon={faFilter} />Filtrar</button>
+      <SelectedFilterField name="order" handleChange={handleChange}>
+        <OptionFilteredout name="default" isSelected="selected" value="default" >Order by: Default</OptionFilteredout>
+        <OptionFilteredout name="popularity" value="popularity" >Order by: Popularity</OptionFilteredout>
+        <OptionFilteredout name="title" value="title" >Order by: Title</OptionFilteredout>
+        <OptionFilteredout name="type" value="type">Order by: Type </OptionFilteredout>
+        <OptionFilteredout name="rating" value="rating">Order by: Rating</OptionFilteredout>
+        <OptionFilteredout name="start_date" value="start_date">Order by: Start-date</OptionFilteredout>
+        <OptionFilteredout name="end_date" value="end_date">Order by: End-date</OptionFilteredout>
+        <OptionFilteredout name="favorites" value="favorites">Order by: Favorites</OptionFilteredout>
+      </SelectedFilterField>
+  
+      <button type='submit' className=' select-none  h-8 max-h-8 px-2 text-slate-50 font-bold bg-blue-500 text-md rounded-sm flex justify-center items-center gap-2'><FontAwesomeIcon color='white' icon={faFilter} />Filtrar</button>
     </form>
   )
 }

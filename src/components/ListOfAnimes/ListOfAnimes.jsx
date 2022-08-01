@@ -18,14 +18,16 @@ export const ListOfAnimes = () => {
 
     return (
         <div className='flex flex-col  gap-3'>
-          
-          <Pagination pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
-            <section className=' relative w-full md-min:min-w-[600px] min-w-[300px] min-h-[300px] flex-stats flex-wrap gap-4'>
+            <div className=' '>
+                <Pagination isLoading={loading} pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            </div>
+
+            <section className=' relative w-full md-min:min-w-[600px] min-w-[300px] min-h-[300px]  flex-stats flex-wrap gap-4'>
                 {
                     !loading && data
                         ?
-                        data.map(({ aired, background, mal_id, duration, episodes, images, score, season, status, title, trailer }) => {
+                        data.map(({ aired, background, mal_id, duration, episodes, images, score, type, season, status, title, trailer }) => {
                             return <AnimeCard
                                 key={title}
                                 aired={aired}
@@ -38,10 +40,12 @@ export const ListOfAnimes = () => {
                                 season={season}
                                 status={status}
                                 title={title}
-                                trailer={trailer} />
+                                trailer={trailer}
+                                type={type}
+                            />
                         })
                         :
-                        <div className='relative left-2/4  '>
+                        <div className='absolute left-2/4  -translate-x-2/4 '>
                             <BeatLoader
                                 color="#1fa9ff"
                                 size={20}
