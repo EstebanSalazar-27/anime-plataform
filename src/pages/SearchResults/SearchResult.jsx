@@ -15,10 +15,15 @@ export const SearchResult = () => {
   // state with the filtered result  
   const [filteredResult, setFilteredResult] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-
   const { filtersSelected, setFiltersSelected } = useContext(FilterOutContext)
-  const { type, keyword } = useParams()
-  const { data, pagination, loading } = useSearch({ type: type, keyword: keyword, page: currentPage })
+  // Take Search Params to pass them to the api request 
+  const location = useLocation().search
+
+  // Take type params to do search 
+  const { type } = useParams()
+  
+
+  const { data, pagination, loading } = useSearch({ type: type, query: location, page: currentPage })
   // use fetch to get data about the filtered info 
   const { filteredData, filteredPagination, filteredLoading } = useItemsByFilter({ type: type, gender: filtersSelected?.gender, typeOf: filtersSelected?.typeOf, status: filtersSelected?.status, order: filtersSelected?.order, page: currentPage })
 
@@ -30,7 +35,7 @@ export const SearchResult = () => {
     console.log(search)
     const newPath = location.pathname = search
     console.log(newPath)
-   
+
   }
 
 

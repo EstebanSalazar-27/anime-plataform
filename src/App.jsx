@@ -1,6 +1,7 @@
 
 import { Routes, Route, useLocation } from "react-router-dom"
 import './App.css'
+import { Footer } from "./components/Footer/Footer"
 
 /// Components
 import { Navbar } from './components/Navbar/Navbar'
@@ -30,10 +31,12 @@ function App() {
             <Route path='/:type' element={<Home />} />
             <Route path='/detail/:id' element={<Detail />} />
             <Route path='/:type/detail/:id' element={<Detail />} />
-            <Route path='/search/:keyword/:type' element={<SearchResult />} />
+            <Route path='/search/:type' element={<SearchResult />} />
 
           </Routes>
         </Wrapper>
+
+        <Footer />
       </div>
     </FilterOutProvider>
 

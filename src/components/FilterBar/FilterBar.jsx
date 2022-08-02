@@ -5,16 +5,19 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { OptionFilteredout, SelectedFilterField } from '../SelectedFilterField/SelectedFilterField'
 import { CheckBoxFilter } from '../CheckboxFilter/CheckBoxFilter'
 import { GenderField } from '../GenderField/GenderField'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
-
+  // Form Data 
   const [formData, setFormData] = useState({
     typeOf: "",
     genres: [],
     status: "",
     order: ""
   })
-
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log(location)
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -30,11 +33,8 @@ export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
       ...formData,
       [e.target.name]: newArray
     });
-
-
-
   }
-
+  // Submit Form And reset context state
   const handleSubmit = (e) => {
     e.preventDefault()
     SetfilterOut({
@@ -51,6 +51,10 @@ export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
     if (currentPage > 1) {
       setCurrentPage(1)
     }
+    navigate(`?type=${formData.typeOf}&genres=${formData.genres}&status=${formData.status}&order_by=${formData.order}`)
+
+ 
+  
   }
 
 
@@ -84,7 +88,7 @@ export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
         <OptionFilteredout name="end_date" value="end_date">Order by: End-date</OptionFilteredout>
         <OptionFilteredout name="favorites" value="favorites">Order by: Favorites</OptionFilteredout>
       </SelectedFilterField>
-  
+
       <button type='submit' className=' select-none  h-8 max-h-8 px-2 text-slate-50 font-bold bg-blue-500 text-md rounded-sm flex justify-center items-center gap-2'><FontAwesomeIcon color='white' icon={faFilter} />Filtrar</button>
     </form>
   )

@@ -13,7 +13,8 @@ export const ListOfAnimes = () => {
     const [currentPage, setCurrentPage] = useState(1)
 
     const { type } = useParams()
-    const { data, pagination, loading } = useAnimesFetch({ query: type || "anime", limit: 25, page: currentPage })
+    console.log(type)
+    const { data, pagination, loading } = useAnimesFetch({ query: "anime", limit: 25, page: currentPage })
 
 
     return (
