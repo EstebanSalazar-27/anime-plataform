@@ -1,5 +1,5 @@
 
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import './App.css'
 
 /// Components
@@ -12,6 +12,9 @@ import { Detail } from './pages/Detail'
 /// Views
 import { Home } from './pages/Home/Home'
 import { SearchResult } from './pages/SearchResults/SearchResult'
+function useQuerys() {
+  return new URLSearchParams(useLocation().search)
+}
 
 function App() {
 

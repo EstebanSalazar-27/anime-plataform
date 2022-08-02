@@ -14,7 +14,6 @@ export const GenderField = ({ handleCheckboxChange, genresFilteredOut }) => {
         setShowGenres(!showGenres)
     }
 
-    console.log(ref)
     // fetch for get all the gender and reset the local state of this component
     const fetchGenders = async () => {
         const res = await GetGenders({ type: type })

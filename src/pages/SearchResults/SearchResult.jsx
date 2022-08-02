@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import { ResultItemBySearch } from '../../components/ResultItemBySearch/ResultItemBySearch'
 import { useSearch } from '../../hooks/useSearch'
@@ -21,6 +21,19 @@ export const SearchResult = () => {
   const { data, pagination, loading } = useSearch({ type: type, keyword: keyword, page: currentPage })
   // use fetch to get data about the filtered info 
   const { filteredData, filteredPagination, filteredLoading } = useItemsByFilter({ type: type, gender: filtersSelected?.gender, typeOf: filtersSelected?.typeOf, status: filtersSelected?.status, order: filtersSelected?.order, page: currentPage })
+
+  // Location 
+
+  if (filtersSelected) {
+    const location = useLocation()
+    const search = location.search = `?type=${filtersSelected?.typeOf}&gender=${filtersSelected?.gender}&status=${filtersSelected?.status}&order=${filtersSelected?.order}`
+    console.log(search)
+    const newPath = location.pathname = search
+    console.log(newPath)
+   
+  }
+
+
 
   // Renders
   const resultsToRender =
@@ -65,7 +78,7 @@ export const SearchResult = () => {
     }
 
   }, [filteredData])
-  const gendersSelected = filtersSelected ? filtersSelected?.gender?.map((e) => e) : null
+
 
   return (
     <div className=' pt-40 flex flex-col gap-6'>

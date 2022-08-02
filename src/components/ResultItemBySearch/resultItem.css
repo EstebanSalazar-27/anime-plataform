@@ -34,7 +34,9 @@ background: linear-gradient(0deg, #00d900 0%, #15a815 100%);}
     opacity:0;
     transition:300ms ease-in;
 }
-
+.isVisible{
+    opacity: 1;
+}
 #card-image:hover::before{
 opacity:1;
 }
@@ -43,3 +45,5 @@ opacity:1;
 background: white;
 color: #109fdf;
 }
+
+
