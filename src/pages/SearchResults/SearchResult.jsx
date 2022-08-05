@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useSearchParams } from 'react-router-dom'
 
 import { ResultItemBySearch } from '../../components/ResultItemBySearch/ResultItemBySearch'
 import { useSearch } from '../../hooks/useSearch'
@@ -19,24 +19,20 @@ export const SearchResult = () => {
   // Take Search Params to pass them to the api request 
   const location = useLocation().search
 
-  // Take type params to do search 
-  const { type } = useParams()
-  
 
-  const { data, pagination, loading } = useSearch({ type: type, query: location, page: currentPage })
+  const [querys] = useSearchParams()
+  const queryType = querys.get("type") ? querys.get("type") : "anime"
+  // Take type params to do search 
+  console.log(queryType, 'search')
+
+
+  const { data, pagination, loading } = useSearch({ type: queryType, query: location, page: currentPage })
   // use fetch to get data about the filtered info 
-  const { filteredData, filteredPagination, filteredLoading } = useItemsByFilter({ type: type, gender: filtersSelected?.gender, typeOf: filtersSelected?.typeOf, status: filtersSelected?.status, order: filtersSelected?.order, page: currentPage })
+  const { filteredData, filteredPagination, filteredLoading } = useItemsByFilter({ type: queryType, typeOf: filtersSelected?.typeOf, gender: filtersSelected?.gender, status: filtersSelected?.status, order: filtersSelected?.order, page: currentPage })
 
   // Location 
 
-  if (filtersSelected) {
-    const location = useLocation()
-    const search = location.search = `?type=${filtersSelected?.typeOf}&gender=${filtersSelected?.gender}&status=${filtersSelected?.status}&order=${filtersSelected?.order}`
-    console.log(search)
-    const newPath = location.pathname = search
-    console.log(newPath)
 
-  }
 
 
 
@@ -91,7 +87,7 @@ export const SearchResult = () => {
       {!filtersSelected ? <Pagination isLoading={loading} isFiltersLoading={filteredLoading} pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} /> : <Pagination pagination={filteredPagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
 
       <FilterBar currentPage={currentPage} setCurrentPage={setCurrentPage} SetfilterOut={setFiltersSelected} />
-      {filtersSelected ? <div className='flex flex-col md:pt-4'><h2 className='font-semibold text-2xl'>Filters Selected:</h2> <h2 className='capitalize font-semibold text-slate-200'>Type: {filtersSelected.typeOf} / Status: {filtersSelected.status} / Order By: {filtersSelected.order} </h2> </div> : null}
+      {filtersSelected ? <div className='flex flex-col md:pt-4'><h2 className='font-semibold text-2xl dark:text-slate-200 text-stone-800'>Filters Selected:</h2> <h2 className='capitalize font-semibold dark:text-slate-300 text-stone-700'>Type: {filtersSelected.typeOf} / Status: {filtersSelected.status} / Order By: {filtersSelected.order} </h2> </div> : null}
       <div className='relative flex items-start w-full  min-h-[300px] md:pt-8 gap-4 flex-wrap'>
         {
           !loading

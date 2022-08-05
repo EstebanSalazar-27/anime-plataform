@@ -25,7 +25,7 @@ export const SearchBar = () => {
     // Function for navigate to detail view with items correponding  to the written keyword  
     const handleSubmit = (e) => {
         e.preventDefault()
-        navigate(`/search/${formData.filterdOutType}?q=${formData.keyword}`)
+        navigate(`/search/?type=${formData.filterdOutType}&q=${formData.keyword}`)
         // Here we reset the filtered list of results to have be able to render only the items that make match with our search 
         if (filtersSelected) {
             setFiltersSelected()
@@ -37,7 +37,7 @@ export const SearchBar = () => {
     return (
         <form className=' flex gap-2' onSubmit={handleSubmit}>
 
-            <select className='bg-transparent text-slate-50' name="filterdOutType" id="filterdOutType " onChange={handleChange}>
+            <select className='bg-transparent text-stone-800 dark:text-slate-50' name="filterdOutType" id="filterdOutType " onChange={handleChange}>
                 <option className="text-stone-900" selected value="anime">Anime</option>
                 <option className="text-stone-900" value="manga">Manga</option>
             </select>
@@ -45,7 +45,7 @@ export const SearchBar = () => {
                 name='keyword'
                 value={formData.keyword}
                 required
-                className='min-w-[300px]  h-10 pl-4 pr-3 rounded-full bg-white/10 text-slate-50  placeholder-slate-50 outline-none'
+                className='min-w-[300px]  h-10 pl-4 pr-3 rounded-full dark:bg-white/10 bg-slate-300 dark:text-slate-50  placeholder-stone-700 dark:placeholder-slate-50 outline-none'
                 onChange={handleChange}
                 type="search"
                 placeholder='Search anime , example: naruto' />

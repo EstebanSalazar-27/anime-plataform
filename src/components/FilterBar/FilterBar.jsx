@@ -5,7 +5,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { OptionFilteredout, SelectedFilterField } from '../SelectedFilterField/SelectedFilterField'
 import { CheckBoxFilter } from '../CheckboxFilter/CheckBoxFilter'
 import { GenderField } from '../GenderField/GenderField'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
   // Form Data 
@@ -17,7 +17,9 @@ export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
   })
   const navigate = useNavigate()
   const location = useLocation()
-  console.log(location)
+  const [querys] = useSearchParams()
+  const queryType = querys.get("type") ? querys.get("type") : "anime"
+
   const handleChange = ({ target }) => {
     setFormData({
       ...formData,
@@ -51,10 +53,10 @@ export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
     if (currentPage > 1) {
       setCurrentPage(1)
     }
-    navigate(`?type=${formData.typeOf}&genres=${formData.genres}&status=${formData.status}&order_by=${formData.order}`)
+    navigate(`?type=${queryType}&typeOf=${formData.typeOf}&genres=${formData.genres}&status=${formData.status}&order_by=${formData.order}`)
 
- 
-  
+
+
   }
 
 

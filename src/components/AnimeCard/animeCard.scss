@@ -15,7 +15,10 @@
 opacity:1;
 
 }
-
-.isVisible{
-    opacity: 1;
+#detail-span{
+    opacity: 0;
+    &.isVisible{
+        opacity: 1;
+    }
 }
+

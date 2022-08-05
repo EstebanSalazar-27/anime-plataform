@@ -54,7 +54,7 @@ export const Pagination = ({ isFiltersLoading, isLoading, pagination, currentPag
         <nav className='flex gap-2 items-end'>
             <button disabled={buttonIsDisabled || currentPage === 1 } onClick={previouslyPage} className="text-slate-50 disabled:opacity-50 transition-colors bg-orange-400/80 font-semibold px-2 py-1 rounded-sm">Previously</button>
             <button disabled={buttonIsDisabled || paginationData?.has_next_page === false } onClick={nextPage} className="text-slate-50 disabled:opacity-50 bg-orange-400/80 font-semibold px-2 py-1 rounded-sm">Next</button>
-            {totalPages ? <HeadingH3 fonts="text-sm" >Page: {currentPage} of {totalPages} </HeadingH3> : null}
+            {totalPages ? <HeadingH3 fonts="text-sm  dark:text-slate-100 text-stone-800 font-semibold" >Page: {currentPage} of {totalPages} </HeadingH3> : null}
         </nav>
     )
 }

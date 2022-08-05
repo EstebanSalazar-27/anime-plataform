@@ -6,7 +6,7 @@ import { ListOfAnimes } from '../../components/ListOfAnimes/ListOfAnimes'
 
 
 export const Home = () => {
-    const {type} = useParams()
+    const { type } = useParams()
 
     document.title = "Home"
     return (
@@ -14,7 +14,7 @@ export const Home = () => {
             <Aside />
 
             <div className='  flex-stats-col w-full gap-4 '>
-            <HeadingH3 fonts="text-3xl capitalize">{type || "anime"}</HeadingH3>
+                <HeadingH3 fonts="text-3xl capitalize">{type || "anime"}</HeadingH3>
                 <ListOfAnimes />
             </div>
         </div>

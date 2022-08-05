@@ -1,5 +1,5 @@
 import react, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams, useSearchParams } from 'react-router-dom'
 
 import { useAnimesFetch } from '../../hooks/useAnimesFetch'
 
@@ -8,12 +8,14 @@ import { BeatLoader } from 'react-spinners'
 import { AnimeCard } from '../AnimeCard/AnimeCard'
 import { Pagination } from '../Pagination/Pagination'
 
-
 export const ListOfAnimes = () => {
     const [currentPage, setCurrentPage] = useState(1)
+    const [querys] = useSearchParams()
+    const queryType = querys.get("type") ? querys.get("type") : "anime"
+ 
 
-    const { type } = useParams()
-    const { data, pagination, loading } = useAnimesFetch({ query: type || "anime", limit: 25, page: currentPage })
+
+    const { data, pagination, loading } = useAnimesFetch({ query: queryType , limit: 25, page: currentPage })
 
 
     return (

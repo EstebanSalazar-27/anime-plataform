@@ -3,7 +3,6 @@
     top:50px;
     left: 0px;
     min-width: 380px;
-    background-color: rgba(233, 239, 244, 0.924);
     z-index: 5;
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -25,8 +24,9 @@
         height: 0;
         border-style: solid;
         border-width: 0 10px 10px 10px;
-        border-color: transparent transparent  rgba(233, 239, 244, 0.924) transparent;
+        border-color: transparent transparent  #e2e8f0 transparent;
         
+       
     }
   
     &.showModal{
