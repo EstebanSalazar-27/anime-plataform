@@ -4,6 +4,7 @@ import { NavLink, useSearchParams } from 'react-router-dom'
 
 import { Brand } from '../Brand/Brand'
 import { HandleMode } from '../HandleMode/HandleMode'
+import { Login } from '../Login/Login'
 import { SearchBar } from '../SearchBar/SearchBar'
 
 
@@ -21,6 +22,7 @@ export const Navbar = ({ handleDarkMode, darkMode }) => {
       <div className='flex items-center gap-4'>
         <SearchBar />
         <HandleMode darkMode={darkMode} handleDarkMode={handleDarkMode} />
+        <Login />
       </div>
 
       <button className='hidden sm:block text-slate-50'>Search</button>

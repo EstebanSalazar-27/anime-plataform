@@ -19,6 +19,9 @@ import { Wrapper } from './layout/Wrapper'
 import { Home } from './pages/Home/Home'
 import { SearchResult } from './pages/SearchResults/SearchResult'
 import { Detail } from './pages/Detail'
+import { RouteNoMatch } from "./pages/404NoMatch/RouteNoMatch"
+import { FavoritesProvider } from "./Context/FavoritesContext"
+import { Login } from "./components/Login/Login"
 
 function App() {
 
@@ -31,22 +34,25 @@ function App() {
   return (
     // FilterOutProvider contain inside itself all the filters selected from the user, i created this context  to handle the reset of filters in another components when an specific event accurs like a submit of forms  from the searchBar 
     <FilterOutProvider>
-      <div className={`${isDarkModeActived} ${bgApp}   min-h-screen`}>
+      <FavoritesProvider>
+        <div className={`${isDarkModeActived} ${bgApp}   min-h-screen`}>
+          
+          <Navbar handleDarkMode={handleDarkMode} darkMode={darkMode} />
+          <Wrapper>
+            {/* Routes  :) */}
+            <Routes>
+              <Route path='*' element={<RouteNoMatch />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/detail' element={<Detail />} />
+              <Route path='/:type/detail/:id' element={<Detail />} />
+              <Route path='/search/' element={<SearchResult />} />
+              <Route path="/login" element={<Login />} />
 
-        <Navbar handleDarkMode={handleDarkMode} darkMode={darkMode} />
-        <Wrapper>
-          {/* Routes  :) */}
-          <Routes>
-            <Route path='*' element={<h2 className="text-3xl">Error 404</h2>} />
-            <Route path='/' element={<Home />} />
-            <Route path='/detail' element={<Detail />} />
-            <Route path='/:type/detail/:id' element={<Detail />} />
-            <Route path='/search/' element={<SearchResult />} />
-
-          </Routes>
-        </Wrapper>
-        <Footer />
-      </div>
+            </Routes>
+          </Wrapper>
+          <Footer />
+        </div>
+      </FavoritesProvider>
     </FilterOutProvider>
 
   )
