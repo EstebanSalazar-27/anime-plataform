@@ -20,6 +20,7 @@
     margin: 0;
     padding:0;
     box-sizing: border-box;
+    transition: all 200ms;
 }
 h1,h2,h3,h4,h5,h6   {
     margin: 0;
@@ -51,4 +52,8 @@ h1,h2,h3,h4,h5,h6   {
       ::-webkit-scrollbar-thumb:hover {
         
         background: #0ea5e990;
+      }
+
+      img, video, button{
+      user-select: none;
       }

@@ -9,6 +9,7 @@ import { FilterBar } from '../../components/FilterBar/FilterBar'
 import { useItemsByFilter } from '../../hooks/useItemsByFilter'
 import { FilterOutContext } from '../../Context/FilterOutContext'
 import { Spinner } from '../../components/Spinner/Spinner'
+import { Wrapper } from '../../layout/Wrapper'
 
 export const SearchResult = () => {
   const [searchResult, setSearchResult] = useState([])
@@ -82,27 +83,29 @@ export const SearchResult = () => {
 
 
   return (
-    <div className=' pt-40 flex flex-col gap-6'>
-      {/* pagination search - pagination filtered */}
-      {!filtersSelected ? <Pagination isLoading={loading} isFiltersLoading={filteredLoading} pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} /> : <Pagination pagination={filteredPagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+    <Wrapper>
+      <div className=' pt-40 flex flex-col gap-6'>
+        {/* pagination search - pagination filtered */}
+        {!filtersSelected ? <Pagination isLoading={loading} isFiltersLoading={filteredLoading} pagination={pagination} currentPage={currentPage} setCurrentPage={setCurrentPage} /> : <Pagination pagination={filteredPagination} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
 
-      <FilterBar currentPage={currentPage} setCurrentPage={setCurrentPage} SetfilterOut={setFiltersSelected} />
-      {filtersSelected ? <div className='flex flex-col md:pt-4'><h2 className='font-semibold text-2xl dark:text-slate-200 text-stone-800'>Filters Selected:</h2> <h2 className='capitalize font-semibold dark:text-slate-300 text-stone-700'>Type: {filtersSelected.typeOf} / Status: {filtersSelected.status} / Order By: {filtersSelected.order} </h2> </div> : null}
-      <div className='relative flex items-start w-full  min-h-[300px] md:pt-8 gap-4 flex-wrap'>
-        {
-          !loading
-            ?
-            resultsToRender
-            :
-            <div className='absolute left-2/4 bottom-2/4  -translate-2/4'>
-              <BeatLoader color='#3b82f6' size={24} />
+        <FilterBar currentPage={currentPage} setCurrentPage={setCurrentPage} SetfilterOut={setFiltersSelected} />
+        {filtersSelected ? <div className='flex flex-col md:pt-4'><h2 className='font-semibold text-2xl dark:text-slate-200 text-stone-800'>Filters Selected:</h2> <h2 className='capitalize font-semibold dark:text-slate-300 text-stone-700'>Type: {filtersSelected.typeOf} / Status: {filtersSelected.status} / Order By: {filtersSelected.order} </h2> </div> : null}
+        <div className='relative flex items-start w-full  min-h-[300px] md:pt-8 gap-4 flex-wrap'>
+          {
+            !loading
+              ?
+              resultsToRender
+              :
+              <div className='absolute left-2/4 bottom-2/4  -translate-2/4'>
+                <BeatLoader color='#3b82f6' size={24} />
 
-            </div>
+              </div>
 
-        }
+          }
+
+        </div>
 
       </div>
-
-    </div>
+    </Wrapper>
   )
 }

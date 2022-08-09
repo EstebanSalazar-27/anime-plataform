@@ -18,15 +18,14 @@ export const Aside = () => {
     // To render 
     const topRender = topAnimes?.data?.map((el, idx) => {
         return (
-            <TopItem key={el.title} type={el.type} url={el.url} id={el.mal_id} title={el.title} score={el.score} status={el.status} />
+            <TopItem key={el.title} type={el.type} url={el.url} queryType={queryType}  id={el.mal_id} title={el.title} score={el.score} status={el.status} />
         )
 
     })
 
     const recommendationsRender = recommendations?.map((el, idx) => {
-
         return (
-            <TopItem key={el.entry.mal_id + el.entry.title} episodes={el.episodes} id={el.entry.mal_id} title={el.entry.title} status={el.status} />
+            <TopItem key={el.entry.mal_id + el.entry.title} queryType={queryType} episodes={el.episodes} id={el.entry.mal_id} title={el.entry.title} status={el.status} />
         )
 
     })

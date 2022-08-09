@@ -1,0 +1,8 @@
+#detail-span{
+    width: 200px;
+    opacity: 0;
+    &.isVisible{
+        opacity: 1;
+        display: block;
+    }
+}

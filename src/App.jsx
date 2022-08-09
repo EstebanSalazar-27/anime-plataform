@@ -29,27 +29,28 @@ function App() {
   const isDarkModeActived = darkMode ? "dark" : ""
   const bgApp = darkMode ? "bg-black/95" : "bg-slate-100"
 
-
+  console.log(import.meta.env)
 
   return (
     // FilterOutProvider contain inside itself all the filters selected from the user, i created this context  to handle the reset of filters in another components when an specific event accurs like a submit of forms  from the searchBar 
     <FilterOutProvider>
       <FavoritesProvider>
         <div className={`${isDarkModeActived} ${bgApp}   min-h-screen`}>
-          
+
           <Navbar handleDarkMode={handleDarkMode} darkMode={darkMode} />
-          <Wrapper>
+    
             {/* Routes  :) */}
             <Routes>
+              <Route path='/detail' element={<Detail />} />
               <Route path='*' element={<RouteNoMatch />} />
               <Route path='/' element={<Home />} />
-              <Route path='/detail' element={<Detail />} />
+
               <Route path='/:type/detail/:id' element={<Detail />} />
               <Route path='/search/' element={<SearchResult />} />
               <Route path="/login" element={<Login />} />
 
             </Routes>
-          </Wrapper>
+       
           <Footer />
         </div>
       </FavoritesProvider>

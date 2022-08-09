@@ -15,7 +15,7 @@ export const Login = () => {
         :
         <FontAwesomeIcon className='text-lg dark:text-slate-100 text-stone-800' color='white' icon={faUserAlt} />
     return (
-        <button onClick={() => app.auth().signOut()}>
+        <button >
             {authenticatedRender}
         </button>
     )
