@@ -40,7 +40,7 @@ export const Detail = () => {
             newGenderFilteredObject.id = genderFiltered[i].mal_id;
         }
 
-        return <Link to={`/search?genres=${newGenderFilteredObject.id}`} key={gender.name} href={gender.url} className='text-sky-400  bg-sky-200/60 dark:bg-sky-200/10 hover:text-slate-100 hover:bg-sky-400 dark:hover:bg-sky-400 shadow-sm  rounded-full min-w-[25px]  px-3 py-1 text-center  text-[13px]  font-bold' target="_blank">{gender.name}</Link>
+        return <Link to={`/anime-plataform/search?genres=${newGenderFilteredObject.id}`} key={gender.name} href={gender.url} className='text-sky-400  bg-sky-200/60 dark:bg-sky-200/10 hover:text-slate-100 hover:bg-sky-400 dark:hover:bg-sky-400 shadow-sm  rounded-full min-w-[25px]  px-3 py-1 text-center  text-[13px]  font-bold' target="_blank">{gender.name}</Link>
     })
 
     const episodes = detail.episodes ? <h4 className='text-md  dark:text-slate-100 text-stone-800 font-semibold '>Episodes: {detail.episodes}</h4> : null
@@ -91,7 +91,7 @@ export const Detail = () => {
                     <div className=' lg-min:basis-2/5'></div>
                     <div className='flex flex-col flex-1 gap-2   xl-min:pl-2  items-start '>
                         <h4 className='text-3xl dark:text-stone-800 text-slate-200 font-bold'>{detail.title}</h4>
-                        <Link to={`/search?typeOf=${detail.type}`} className='bg-sky-500 px-6 py-[1px] text-slate-100  rounded-full font-semibold'>{detail.type}</Link>
+                        <Link to={`/anime-plataform/search?typeOf=${detail.type}`} className='bg-sky-500 px-6 py-[1px] text-slate-100  rounded-full font-semibold'>{detail.type}</Link>
                         <div className='flex gap-2'>
                             <h4 className='text-sm font-serif dark:text-stone-800 text-stone-100 dark:bg-slate-300 bg-stone-700 font-medium px-2 p-[3px] rounded-md '>{detail.title_english} </h4>
                             <h4 className='text-sm font-serif dark:text-stone-800 text-stone-100 dark:bg-slate-300 bg-stone-700 font-medium px-2 p-[3px] rounded-md '>{detail.title_japanese} </h4>

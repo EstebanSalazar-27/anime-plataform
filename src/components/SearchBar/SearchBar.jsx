@@ -25,7 +25,7 @@ export const SearchBar = () => {
     // Function for navigate to detail view with items correponding  to the written keyword  
     const handleSubmit = (e) => {
         e.preventDefault()
-        navigate(`/search/?type=${formData.filterdOutType}&q=${formData.keyword}`)
+        navigate(`/anime-plataform/search/?type=${formData.filterdOutType}&q=${formData.keyword}`)
         // Here we reset the filtered list of results to have be able to render only the items that make match with our search 
         if (filtersSelected) {
             setFiltersSelected()

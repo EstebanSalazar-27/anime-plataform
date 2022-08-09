@@ -15,8 +15,8 @@ export const Navbar = ({ handleDarkMode, darkMode }) => {
     <nav className='min-h-[12] bg-slate-200  fixed left-0 right-0  p-2 px-12 z-10 dark:bg-stone-900 transition-colors shadow-sm flex-stats justify-between '>
       <div className='flex items-center gap-6' >
         <Brand />
-        <NavLink className="dark:text-slate-50 text-stone-800  font-medium text-md " to="?type=anime">Anime</NavLink>
-        <NavLink className="dark:text-slate-50 text-stone-800 font-medium text-md " to="?type=manga">Manga</NavLink>
+        <NavLink className="dark:text-slate-50 text-stone-800  font-medium text-md " to="/anime-plataform?type=anime">Anime</NavLink>
+        <NavLink className="dark:text-slate-50 text-stone-800 font-medium text-md " to="/anime-plataform?type=manga">Manga</NavLink>
       </div>
 
       <div className='flex items-center gap-4'>

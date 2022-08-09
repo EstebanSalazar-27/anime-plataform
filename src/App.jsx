@@ -41,13 +41,13 @@ function App() {
     
             {/* Routes  :) */}
             <Routes>
-              <Route path='/detail' element={<Detail />} />
+              <Route path='/anime-plataform/detail' element={<Detail />} />
               <Route path='*' element={<RouteNoMatch />} />
-              <Route path='/' element={<Home />} />
+              <Route path='/anime-plataform/' element={<Home />} />
 
-              <Route path='/:type/detail/:id' element={<Detail />} />
-              <Route path='/search/' element={<SearchResult />} />
-              <Route path="/login" element={<Login />} />
+              <Route path='/anime-plataform/:type/detail/:id' element={<Detail />} />
+              <Route path='/anime-plataform/search/' element={<SearchResult />} />
+              <Route path="/anime-plataform/login" element={<Login />} />
 
             </Routes>
        

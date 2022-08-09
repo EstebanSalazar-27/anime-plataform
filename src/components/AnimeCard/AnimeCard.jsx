@@ -31,7 +31,7 @@ export const AnimeCard = ({ aired, background, type, duration, episodes, images,
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
             id='anime-card'
-            to={`/detail?id=${id}&type=${queryType}`}
+            to={`/anime-plataform/detail?id=${id}&type=${queryType}`}
             className={` flex select-none flex-col w-40    hover:shadow-2xl  transition-all min-w-[10rem]  min-h-[200px] max-h-[300px]  md:basis-full  dark:bg-stone-900 bg-slate-200  flex-shrink-0 rounded-sm `}>
 
             <div id='card-image' className='relative min-h-[200px]'>

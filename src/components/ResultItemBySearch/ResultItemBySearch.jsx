@@ -20,7 +20,7 @@ export const ResultItemBySearch = ({ title, type, images, id }) => {
     }
     return (
         <Link
-            to={`/detail?id=${id}&type=${queryType}`}
+            to={`/anime-plataform/detail?id=${id}&type=${queryType}`}
             className='relative select-none flex flex-col w-[185px] bg-slate-300 dark:bg-stone-800 sm:w-full gap-2 rounded-sm justify-center items-center mb-2 shadow-lg'
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
