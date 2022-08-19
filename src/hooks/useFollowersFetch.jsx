@@ -13,7 +13,6 @@ export const useFollowersFetch = ({ type, id }) => {
             setData(res)
             setLoading(false)
         }, 2000);
-
     }
 
     useEffect(() => {

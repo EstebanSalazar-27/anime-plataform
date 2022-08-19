@@ -12,7 +12,7 @@ import { ThemeContext } from "./Context/ThemeContext"
 import { Footer } from "./components/Footer/Footer"
 
 // Layout Wrapper
-import { Wrapper } from './layout/Wrapper'
+
 
 
 /// Views
@@ -21,7 +21,7 @@ import { SearchResult } from './pages/SearchResults/SearchResult'
 import { Detail } from './pages/Detail'
 import { RouteNoMatch } from "./pages/404NoMatch/RouteNoMatch"
 import { FavoritesProvider } from "./Context/FavoritesContext"
-import { Login } from "./components/Login/Login"
+import { Login } from "./pages/Login/Login"
 
 function App() {
 

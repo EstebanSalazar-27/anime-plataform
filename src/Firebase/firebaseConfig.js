@@ -36,10 +36,18 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
-const dataBase = getFirestore(app)
-const storage = getStorage(app)
+export const auth = getAuth(app)
+export const db = getFirestore(app)
+export const storage = getStorage(app)
 
-console.log(app)
+
+export const userExist = async (uid) =>{
+    const docRef = doc(db, "users", uid)
+    const res = await getDoc(docRef)
+    console.log(res)
+
+    return res.exists()
+}
+
 
 export default app
