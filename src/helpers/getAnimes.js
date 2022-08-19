@@ -24,6 +24,13 @@ export const getAllAnimes = async ({ query, limit = 25, page = 1 }) => {
 
 
 }
+export const getAllEpisodesById = async ({ type = 'anime', id, page = 1 }) => {
+    const res = await fetch(`${API_URL}${type}/${id}/episodes?${querys.page}${page}`)
+    const data = await res.json()
+
+
+    return data
+}
 export const getTopAnimes = async ({ type }) => {
     /// options for type ; "anime", "manga"
     const res = await fetch(`https://api.jikan.moe/v4/top/${type}${querys.limit}10`)
@@ -56,6 +63,15 @@ export const GetGenders = async ({ type = "anime" }) => {
     const data = await res.json()
 
     return data
+}
+
+export const getFollowers = async ({ type = "anime", id, }) => {
+    const res = await fetch(`${API_URL}${type}/${id}/userupdates`)
+    const data = await res.json()
+    const newDataSliced = data.data.slice(0, 16)
+
+
+    return { newDataSliced }
 }
 
 export const getItemsByFilter = async ({ type = "", typeOf = "", gender = "", status = "", order = "", page = 1 }) => {

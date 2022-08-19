@@ -26,7 +26,7 @@ export const ResultItemBySearch = ({ title, type, images, id }) => {
             onMouseOut={handleMouseOut}
         >
             <div id="card-image" className='relative  w-full bg-slate-200 dark:bg-stone-700 p-1.5 rounded-sm'>
-                <img src={images.large_image_url} className=" w-full h-full  min-h-[250px] min-w-[150px] bg-slate-600  max-h-[250px] block bg-center bg-no-repeat bg-cover" alt={title} />
+                <img src={images.large_image_url} className=" w-full h-full  min-h-[250px] min-w-[150px] bg-slate-600    max-h-[250px] block bg-center bg-no-repeat bg-cover" alt={title} />
                 <span id='bourble-type' className={`text-slate-50 text-[12px] min-w-[70px] py-[2px] px-2 font-bold rounded-full text-center absolute left-2 bottom-2 decorator-${type}`}>{type}</span>
             </div>
 

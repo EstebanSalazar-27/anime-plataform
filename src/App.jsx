@@ -27,7 +27,7 @@ function App() {
 
   const { darkMode, handleDarkMode } = useContext(ThemeContext)
   const isDarkModeActived = darkMode ? "dark" : ""
-  const bgApp = darkMode ? "bg-black/95" : "bg-slate-100"
+  const bgApp = darkMode ? "bg-black/95 " : "bg-slate-100"
 
   console.log(import.meta.env)
 
