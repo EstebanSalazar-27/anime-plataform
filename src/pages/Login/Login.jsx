@@ -9,7 +9,7 @@ export const Login = () => {
   0: Inicializando
   1: Loading
   2: Login has been completed 
-  3: login without register 
+  3: login but not registered
   4: no logged 
   */
   const [state, setCurrentState] = useState(0)
@@ -55,7 +55,7 @@ export const Login = () => {
   return (
     <Wrapper>
       <div className='pt-40 w-full h-screen flex justify-center'>
-
+      <img src=""  alt="" />
         <div className='p-4'>
           {loading}
           {userLoggedAndRegistered}

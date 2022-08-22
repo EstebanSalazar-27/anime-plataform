@@ -22,6 +22,7 @@ import { Detail } from './pages/Detail'
 import { RouteNoMatch } from "./pages/404NoMatch/RouteNoMatch"
 import { FavoritesProvider } from "./Context/FavoritesContext"
 import { Login } from "./pages/Login/Login"
+import { env } from "process"
 
 function App() {
 

@@ -9,18 +9,7 @@ import {
     getDownloadURL,
     getBytes,
 } from "firebase/storage"
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDoc,
-    getDocs,
-    doc,
-    query,
-    where,
-    setDoc,
-    deleteDoc
-} from "firebase/firestore"
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,12 +25,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app)
 export const db = getFirestore(app)
 export const storage = getStorage(app)
 
 
-export const userExist = async (uid) =>{
+export const userExist = async (uid) => {
     const docRef = doc(db, "users", uid)
     const res = await getDoc(docRef)
     console.log(res)
