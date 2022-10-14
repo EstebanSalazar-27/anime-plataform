@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Wrapper } from '../../layout/Wrapper'
 import { auth, userExist } from '../../Firebase/firebaseConfig'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
+import { UserContext } from '../../Context/UserContext'
 export const Login = () => {
-  const [currentUser, setCurrentUser] = useState(null)
+
   /*
   State
   0: Inicializando
@@ -13,16 +14,15 @@ export const Login = () => {
   4: no logged 
   */
   const [state, setCurrentState] = useState(0)
+  const {setUser}  = useContext(UserContext)
   const registerWithGoogle = async () => {
     const googleProvider = new GoogleAuthProvider()
     await signWithGoogle(googleProvider)
-
-
   }
   const signWithGoogle = async (googleProvider) => {
     try {
       const res = await signInWithPopup(auth, googleProvider)
-      console.log(res)
+      setUser(res)
     } catch (error) {
       console.error(error)
     }

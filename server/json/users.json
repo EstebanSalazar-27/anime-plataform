@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "name": "esteban",
+      "lastname": "salazar",
+      "email": "estebanenis27@gmail.com",
+      "password": 123123123,
+      "password_confirm": 123123123,
+      "favorites": [],
+      "id": "659af7db-6870-477f-8841-4d78619c9352",
+      "registeredAt": "2022-10-14T17:33:01.437Z"
+    }
+  ]
+}

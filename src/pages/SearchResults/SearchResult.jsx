@@ -19,14 +19,10 @@ export const SearchResult = () => {
   const { filtersSelected, setFiltersSelected } = useContext(FilterOutContext)
   // Take Search Params to pass them to the api request 
   const location = useLocation().search
-
-
   const [querys] = useSearchParams()
   const queryType = querys.get("type") ? querys.get("type") : "anime"
   // Take type params to do search 
   console.log(queryType, 'search')
-
-
   const { data, pagination, loading } = useSearch({ type: queryType, query: location, page: currentPage })
   // use fetch to get data about the filtered info 
   const { filteredData, filteredPagination, filteredLoading } = useItemsByFilter({ type: queryType, typeOf: filtersSelected?.typeOf, gender: filtersSelected?.gender, status: filtersSelected?.status, order: filtersSelected?.order, page: currentPage })

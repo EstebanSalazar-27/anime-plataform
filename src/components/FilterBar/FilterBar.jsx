@@ -64,7 +64,7 @@ export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
     <form className='w-full h-12 flex-stats gap-2 flex-wrap pb-20' onSubmit={handleSubmit}>
 
       <SelectedFilterField  name="typeOf"  handleChange={handleChange}>
-        <OptionFilteredout name="All" selected value="ALL">All</OptionFilteredout>
+        <OptionFilteredout name="All" defaultValue value="ALL">All</OptionFilteredout>
         <OptionFilteredout name="typeOf" value="TV">TV</OptionFilteredout>
         <OptionFilteredout name="typeOf" value="Movie">Movie</OptionFilteredout>
         <OptionFilteredout name="typeOf" value="Special">Special</OptionFilteredout>
@@ -74,14 +74,14 @@ export const FilterBar = ({ SetfilterOut, currentPage, setCurrentPage }) => {
       <GenderField genresFilteredOut={formData.genres.length} handleCheckboxChange={handleCheckboxChange} />
 
       <SelectedFilterField name="status" handleChange={handleChange}>
-        <OptionFilteredout name="all" selected value="all" >Estado: All</OptionFilteredout>
+        <OptionFilteredout name="all" defaultValue value="all" >Estado: All</OptionFilteredout>
         <OptionFilteredout name="airing" value="airing">Estado: Airing</OptionFilteredout>
         <OptionFilteredout name="complete" value="complete">Estado: Complete</OptionFilteredout>
         <OptionFilteredout name="upcoming" value="upcoming">Estado: Upcoming</OptionFilteredout>
       </SelectedFilterField>
 
       <SelectedFilterField name="order" handleChange={handleChange}>
-        <OptionFilteredout name="default" selected value="default" >Order by: Default</OptionFilteredout>
+        <OptionFilteredout name="default" defaultValue value="default" >Order by: Default</OptionFilteredout>
         <OptionFilteredout name="popularity" value="popularity" >Order by: Popularity</OptionFilteredout>
         <OptionFilteredout name="title" value="title" >Order by: Title</OptionFilteredout>
         <OptionFilteredout name="type" value="type">Order by: Type </OptionFilteredout>
